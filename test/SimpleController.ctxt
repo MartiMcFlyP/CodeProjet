@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=SimpleController
+comment0.text=\n\ Un\ controleur\ de\ robot\ simple.\ Utilise\ un\ robot\ de\ type\ "chaise\ roulante"\n\ avec\ le\ detecteur\ d'ultrasons.\ Le\ robot\ avance\ tout\ droit\ mais\ fait\ une\n\ manoeuvre\ arriere\ si\ le\ detecteur\ percoit\ un\ obstacle.\ Le\ robot\ s'arrete\n\ immediatement\ si\ on\ appuye\ sur\ le\ bouton\ Escape.\n\ \n\ @author\ Charles\ Pecheur,\ Viet\ Trong\ Ho\n\ @version\ 2011\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment1.text=\n\ Cree\ et\ demarre\ la\ liste\ de\ taches\n
+numComments=2

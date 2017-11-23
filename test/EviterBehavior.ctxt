@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=EviterBehavior
+comment0.text=\n\ Une\ tache\ qui\ fait\ un\ virage\ d'1/4\ tour\ a\ gauche\ en\ arriere\ quand\ un\ obstacle\ est\n\ detecte.\n\ \n\ @author\ Charles\ Pecheur,\ Viet\ Trong\ Ho\n\ @version\ 2011\n
+comment1.params=pilote\ sonar
+comment1.target=EviterBehavior(lejos.robotics.navigation.DifferentialPilot,\ lejos.nxt.UltrasonicSensor)
+comment1.text=\n\ @pre\ {pilote}\ permet\ de\ piloter\ le\ robot,\ {sonar}\ permet\ de\ detecter\ les\n\ \ \ \ \ \ obstacles.\n\ @post\ la\ tache\ a\ ete\ cree.\n
+comment2.params=
+comment2.target=void\ action()
+comment2.text=\n\ @pre\ --\n\ @post\ le\ robot\ a\ fait\ un\ virage\ d'1/4\ tour\ en\ arrire,\ et\ s'est\ ensuite\n\ \ \ \ \ \ \ arret.\ La\ manoeuvre\ est\ interrompue\ si\ {suppress}\ a\ ete\ appel.\n
+comment3.params=
+comment3.target=void\ suppress()
+comment3.text=\n\ @pre\ --\n\ @post\ {suppressed\ \=\=\ true},\ ce\ qui\ provoque\ l'arret\ de\ {action}.\n
+comment4.params=
+comment4.target=boolean\ takeControl()
+comment4.text=\n\ @pre\ --\n\ @post\ retourne\ {true}\ ssi\ un\ obstacle\ est\ detecte\ a\ moins\ de\ ~25\ cm.\n
+numComments=5

@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=StopBehavior
+comment0.text=\n\ Une\ tache\ qui\ arrete\ le\ robot\ et\ le\ programme\ si\ ESCAPE\ est\ presse.\n\ \n\ @author\ Charles\ Pecheur,\ Detienne\ Nicolas\n\ @version\ 2014\n
+comment1.params=pilote
+comment1.target=StopBehavior(lejos.robotics.navigation.DifferentialPilot)
+comment1.text=\n\ @pre\ {pilote}\ permet\ de\ piloter\ le\ robot\n\ @post\ la\ tache\ a\ ete\ cree\ \ \n
+comment2.params=
+comment2.target=void\ action()
+comment2.text=\n\ @pre\ --\n\ @post\ le\ robot\ est\ arrete\ et\ le\ programme\ est\ termine.\n
+comment3.params=
+comment3.target=void\ suppress()
+comment3.text=\n\ @pre\ --\n\ @post\ aucun\ effet,\ l'action\ se\ termine\ immediatement\ d'elle-meme.\n
+comment4.params=
+comment4.target=boolean\ takeControl()
+comment4.text=\n\ @pre\ --\n\ @post\ retourne\ {true}\ si\ le\ bouton\ ESCAPE\ est\ enfonce.\n
+numComments=5

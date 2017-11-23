@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=AvancerBehavior
+comment0.text=\n\ Une\ tache\ qui\ fait\ avancer\ le\ robot\ indfiniment\ en\ ligne\ droite.\n\ \n\ @author\ Charles\ Pecheur,\ Viet\ Trong\ Ho\n\ @version\ 2011\n
+comment1.params=pilote
+comment1.target=AvancerBehavior(lejos.robotics.navigation.DifferentialPilot)
+comment1.text=\n\ @pre\ {pilote}\ permet\ de\ piloter\ le\ robot\n\ @post\ la\ tche\ a\ ete\ cree\ \ \n
+comment2.params=
+comment2.target=void\ action()
+comment2.text=\n\ @pre\ --\n\ @post\ le\ robot\ a\ avance\ jusqu'a\ ce\ que\ {suppress}\ ait\ ete\ appele,\ et\n\ \ \ \ \ \ \ s'est\ ensuite\ arrete.\n
+comment3.params=
+comment3.target=void\ suppress()
+comment3.text=\n\ @pre\ --\n\ @post\ {suppressed\ \=\=\ true},\ ce\ qui\ provoque\ l'arret\ de\ {action}.\n
+comment4.params=
+comment4.target=boolean\ takeControl()
+comment4.text=\n\ @pre\ --\n\ @post\ retourne\ {true}\:\ la\ tache\ est\ toujours\ activable.\n
+numComments=5
