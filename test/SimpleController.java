@@ -14,8 +14,8 @@ import lejos.nxt.*;
 public class SimpleController {
 
 	// Toutes les distances sont en cm.   
-	private static final float DIAM_ROUE = 5.5f;  // Diametre des roues
-	private static final float DIST_ROUE = 11f;   // Empattement entre les roues
+	private static final float DIAM_ROUE = 5.6f;  // Diametre des roues
+	private static final float DIST_ROUE = 13.8f;   // Empattement entre les roues
 	
 	/**
 	 * Cree et demarre la liste de taches
