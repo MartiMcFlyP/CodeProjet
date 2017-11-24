@@ -22,32 +22,33 @@ public class Part1 implements Behavior {
 
 	public void action() {
 		suppressed = false; // remise a zero
-		pilote.arc(20.0, -90.0, true); // entame un virage arriere (sans attendre la fin)
+		pilote.travel(10);
+		pilote.arc(0.0, 90.0, true); // entame un virage arriere (sans attendre la fin)
 		while (!suppressed && pilote.isMoving()) { // tant que {suppress} n'a pas ete appele
 													// et que le virage n'est pas termine...
 			Thread.yield(); // ... liberer le processeur
 		} // sortie de boucle: {suppress} a ete appele ou le virage est termine
 		pilote.stop(); // arreter le robot
-		if (sonar.getDistance() <= 50) {
-			pilote.backward(); // marche arrière
-			while (!suppressed && sonar.getDistance() < 50) {
+		if (sonar.getDistance() <= 35) {
+			pilote.backward(); // marche arriere
+			while (!suppressed && sonar.getDistance() < 35) {
 				Thread.yield();// libere le processeur
 			}
 		} else {
-			pilote.forward(); // marche arrière
-			while (!suppressed && sonar.getDistance() < 50) {
+			pilote.forward(); // marche arriere
+			while (!suppressed && sonar.getDistance() < 35) {
 				Thread.yield();// libere le processeur
 			}
 		}
 		pilote.stop();
 
-		pilote.arc(0.0, 90.0, true);
+		pilote.arc(0.0, -90.0, true);
 		while (!suppressed && pilote.isMoving()) { // tant que {suppress} n'a pas ete appele
 			// et que le virage n'est pas termine...
 			Thread.yield(); // ... liberer le processeur
 		} // sortie de boucle: {suppress} a ete appele ou le virage est termine
 		pilote.stop(); // arreter le robot
-		pilote.backward(); // marche arrière
+		pilote.backward(); // marche arriere
 		while (!suppressed && !button.isPressed()) {
 			Thread.yield();// libere le processeur
 		}
