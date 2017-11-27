@@ -17,13 +17,19 @@ public class Part1 implements Behavior {
 	}
 
 	public boolean takeControl() {
+		if (MartinController.Part1IsDone) {
+			return false;
+		}
 		return true;
 	}
 
 	public void action() {
 		suppressed = false; // remise a zero
-		pilote.travel(10);
-		pilote.arc(0.0, 90.0, true); // entame un virage arriere (sans attendre la fin)
+		pilote.setTravelSpeed(16.0);
+		pilote.setRotateSpeed(60.0);
+		// en attendant
+		//pilote.travel(10);
+		pilote.arc(10.0, 90.0, true); // entame un virage arriere (sans attendre la fin)
 		while (!suppressed && pilote.isMoving()) { // tant que {suppress} n'a pas ete appele
 													// et que le virage n'est pas termine...
 			Thread.yield(); // ... liberer le processeur
@@ -53,11 +59,15 @@ public class Part1 implements Behavior {
 			Thread.yield();// libere le processeur
 		}
 		pilote.stop(); // arrete le robot
-		MartinController.donePart1 = true;
+		MartinController.Part1IsDone = true;
 	}
 
+	/**
+	 * @pre --
+	 * @post {suppressed == true}, ce qui provoque l'arret de {action}.
+	 */
 	public void suppress() {
-
+		suppressed = true;
 	}
 
 }

@@ -7,7 +7,8 @@ public class MartinController {
 	// Toutes les distances sont en cm.
 	private static final float DIAM_ROUE = 5.6f; // Diametre des roues
 	private static final float DIST_ROUE = 13.8f; // Empattement entre les roues
-	public static boolean donePart1 = false;
+	public static boolean Part1IsDone = false;
+	public static boolean Part2IsDone = false;
 	/**
 	 * Cree et demarre la liste de taches
 	 */
