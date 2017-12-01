@@ -10,11 +10,11 @@ import lejos.nxt.*;
  */
 public class StopBehavior implements Behavior {
 
-	private DifferentialPilot pilote;	
-	
+	private DifferentialPilot pilote;
+
 	/**
 	 * @pre {pilote} permet de piloter le robot
-	 * @post la tache a ete cree  
+	 * @post la tache a ete cree
 	 */
 	public StopBehavior(DifferentialPilot pilote) {
 		super();
@@ -26,8 +26,8 @@ public class StopBehavior implements Behavior {
 	 * @post le robot est arrete et le programme est termine.
 	 */
 	public void action() {
-	    pilote.stop();
-	    System.exit(0);
+		pilote.stop();
+		System.exit(0);
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class StopBehavior implements Behavior {
 	 * @post retourne {true} si le bouton ESCAPE est enfonce.
 	 */
 	public boolean takeControl() {
-	     return Button.ESCAPE.isDown() || MartinController.Part1IsDone == true;
+		return Button.ESCAPE.isDown() || MartinController.RetourIsDone == true;
 	}
 
 }
