@@ -9,7 +9,7 @@ public class Part2 implements Behavior {
 	private LightSensor lightSensor;
 	private UltrasonicSensor sonar;
 
-	public Part2(DifferentialPilot pilote,UltrasonicSensor sonar, LightSensor lightSensor) {
+	public Part2(DifferentialPilot pilote, UltrasonicSensor sonar, LightSensor lightSensor) {
 		this.pilote = pilote;
 		this.sonar = sonar;
 		this.lightSensor = lightSensor;
@@ -21,18 +21,83 @@ public class Part2 implements Behavior {
 
 	public void action() {
 		suppressed = false;
+		if(!MartinController.Part2Variante) {
 		pilote.forward();
-		while (!suppressed && lightSensor.getLightValue() > 44) {
+		while (!suppressed && lightSensor.getLightValue() > 44 && sonar.getDistance() > 12.5) {
 			Thread.yield();// libere le processeur
 		}
 		pilote.stop();
+		if (sonar.getDistance() <= 15) {
+
+			pilote.rotate(-90);
+			pilote.travel(25);
+
+			pilote.rotate(90);
+			if (sonar.getDistance() < 15) {
+				pilote.rotate(-90);
+				pilote.travel(12.5);
+				pilote.rotate(90);
+			}
+			pilote.forward();
+			while (!suppressed && lightSensor.getLightValue() > 37 && sonar.getDistance() > 12.5) {
+				Thread.yield();
+			}
+			pilote.stop();
+		}
 		MartinController.avionX = 119 - sonar.getDistance();
-		pilote.travel(18);// avance pour pouvoir s'aligner
-		pilote.arc(-10, 90, true); // se positionne sur la ligne
-		while (!suppressed && pilote.isMoving()) {
-			Thread.yield();// libere le processeur
+		if (sonar.getDistance() > 30) {
+			pilote.travel(24);// avance pour pouvoir s'aligner
+			pilote.arc(-10, 90, true); // se positionne sur la ligne
+			while (!suppressed && pilote.isMoving()) {
+				Thread.yield();// libere le processeur
+			}
+			pilote.stop();
+		} else {
+			pilote.travel(10);
+			pilote.arc(10, 90);
+			while (!suppressed && pilote.isMoving()) {
+				Thread.yield();
+			}
 		}
-		pilote.stop();
+		}
+		else {
+			pilote.forward();
+			while (!suppressed && lightSensor.getLightValue() > 44 && sonar.getDistance() > 12.5) {
+				Thread.yield();// libere le processeur
+			}
+			pilote.stop();
+			if (sonar.getDistance() <= 15) {
+				pilote.rotate(90);
+				pilote.travel(25);
+				pilote.rotate(-90);
+				if (sonar.getDistance() < 15) {
+					pilote.rotate(90);
+					pilote.travel(12.5);
+					pilote.rotate(-90);
+				}
+				
+				pilote.forward();
+				while (!suppressed && lightSensor.getLightValue() > 37 && sonar.getDistance() > 12.5) {
+					Thread.yield();
+				}
+				pilote.stop();
+			}
+			MartinController.avionX = sonar.getDistance();
+			if (sonar.getDistance() > 30) {
+				pilote.travel(24);// avance pour pouvoir s'aligner
+				pilote.arc(10, -90, true); // se positionne sur la ligne
+				while (!suppressed && pilote.isMoving()) {
+					Thread.yield();// libere le processeur
+				}
+				pilote.stop();
+			} else {
+				pilote.travel(10);
+				pilote.arc(-10, -90);
+				while (!suppressed && pilote.isMoving()) {
+					Thread.yield();
+				}
+			}
+		}
 		pilote.backward(); // le robot recule jussqua l avion
 		while (!suppressed && ((int) lightSensor.getLightValue()) > 36) {
 			Thread.yield();

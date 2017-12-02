@@ -21,6 +21,7 @@ public class MartinController {
 	public static double[] obstales = new double[] { 200, 200, 200, 200, 200, 200 };
 	public static double avionX = 0;
 	public static double departY = 0;
+	public static boolean Part2Variante = false;
 	public static boolean BalayageIsDone = true;
 	public static boolean ReperageIsDone = false;
 	public static boolean Part1IsDone = false;
