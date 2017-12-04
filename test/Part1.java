@@ -26,10 +26,12 @@ public class Part1 implements Behavior {
 	public void action() {
 		pilote.setTravelSpeed(10);
 		pilote.setRotateSpeed(45);
+		pilote.travel(2);
 		pilote.rotate(90);
 		MartinController.departY = sonarAr.getDistance();
 
-		while (sonarAv.getDistance() < 43 - sonarAr.getDistance()) {
+		while (sonarAv.getDistance() < 43 - sonarAr.getDistance()) { // premiere maneuvre d'evitement (obstacle avant le
+																		// bouton)
 			pilote.rotate(-90);
 			pilote.travel(20);
 			pilote.rotate(90);
@@ -59,7 +61,7 @@ public class Part1 implements Behavior {
 		}
 		pilote.stop();
 
-		pilote.arc(0.0, -90.0, true);
+		pilote.arc(0.0, -90.0, true); // s'aligne face au bouton
 		while (!suppressed && pilote.isMoving()) { // tant que {suppress} n'a pas ete appele
 			// et que le virage n'est pas termine...
 			Thread.yield(); // ... liberer le processeur
