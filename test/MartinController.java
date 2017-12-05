@@ -29,9 +29,6 @@ public class MartinController {
 	public static boolean Part3IsDone = false;
 	public static boolean PisteIsDone = false;
 	public static boolean RetourIsDone = false;
-	public static double angle = 0; 
-	public static double angleR = 0;
-
 	/**
 	 * Cree et demarre la liste de taches
 	 */
@@ -52,7 +49,7 @@ public class MartinController {
 		Behavior partie2 = new Part2(pilote, sonarAv, sonarAr, lightSensor);
 		Behavior partie3 = new Part3(pilote, sonarAv, lightSensor);
 		Behavior piste = new Piste(pilote, sonarAv);
-		Behavior retour = new Retour(pilote, sonarAv, sonarAr);
+		Behavior retour = new Retour(pilote, sonarAv, sonarAr, lightSensor);
 		Behavior stop = new StopBehavior(pilote);
 		Behavior[] taches = { balayage, partie1, reperage, partie2, partie3, piste, retour, stop };
 

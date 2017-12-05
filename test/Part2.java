@@ -9,6 +9,7 @@ public class Part2 implements Behavior {
 	private LightSensor lightSensor;
 	private UltrasonicSensor sonar;
 	private UltrasonicSensor sonarAr;
+	private boolean evite = false;
 
 	public Part2(DifferentialPilot pilote, UltrasonicSensor sonar, UltrasonicSensor sonarAr, LightSensor lightSensor) {
 		this.pilote = pilote;
@@ -30,27 +31,26 @@ public class Part2 implements Behavior {
 			}
 			pilote.stop();
 			if (sonar.getDistance() <= 15) {
-
+				evite = true;
 				pilote.rotate(-90);
 				pilote.travel(20);
-
 				pilote.rotate(90);
-				if (sonar.getDistance() < 15) {
-					pilote.rotate(-90);
-					pilote.travel(12.5);
-					pilote.rotate(90);
-				}
+//				if (sonar.getDistance() < 15) {
+//					pilote.rotate(-90);
+//					pilote.travel(12.5);
+//					pilote.rotate(90);
+//				}
 				pilote.forward();
-				while (!suppressed && lightSensor.getLightValue() > 37 && sonar.getDistance() > 12.5) {
+				while (lightSensor.getLightValue() > 44) {
 					Thread.yield();
 				}
 				pilote.stop();
 			}
 			MartinController.avionX = 119 - sonar.getDistance();
-			if (119 - (sonarAr.getDistance() + 23) > sonar.getDistance()) {
-				MartinController.avionX = 119 - (sonarAr.getDistance() + 23);
+			if ((sonarAr.getDistance() + 23) > 119 - sonar.getDistance()) {
+				MartinController.avionX = sonarAr.getDistance() + 23;
 			}
-			if (sonar.getDistance() > 30) {
+			if (sonar.getDistance() > 30 && !evite) {
 				pilote.travel(24);// avance pour pouvoir s'aligner
 				pilote.arc(-10, 90, true); // se positionne sur la ligne
 				while (!suppressed && pilote.isMoving()) {
@@ -58,7 +58,7 @@ public class Part2 implements Behavior {
 				}
 				pilote.stop();
 			} else {
-				pilote.travel(10);
+				pilote.travel(5);
 				pilote.arc(10, 90);
 				while (!suppressed && pilote.isMoving()) {
 					Thread.yield();
@@ -71,26 +71,27 @@ public class Part2 implements Behavior {
 			}
 			pilote.stop();
 			if (sonar.getDistance() <= 15) {
+				evite = true;
 				pilote.rotate(90);
 				pilote.travel(20);
 				pilote.rotate(-90);
-				if (sonar.getDistance() < 15) {
-					pilote.rotate(90);
-					pilote.travel(12.5);
-					pilote.rotate(-90);
-				}
+//				if (sonar.getDistance() < 15) {
+//					pilote.rotate(90);
+//					pilote.travel(12.5);
+//					pilote.rotate(-90);
+//				}
 
 				pilote.forward();
-				while (!suppressed && lightSensor.getLightValue() > 37 && sonar.getDistance() > 12.5) {
+				while (!suppressed && lightSensor.getLightValue() > 44) {
 					Thread.yield();
 				}
 				pilote.stop();
 			}
 			MartinController.avionX = sonar.getDistance();
-			if (sonarAr.getDistance() + 23 > sonar.getDistance()) {
-				MartinController.avionX = sonarAr.getDistance() + 23;
+			if (119 - (sonarAr.getDistance() + 23) > sonar.getDistance()) {
+				MartinController.avionX = 119 - (sonarAr.getDistance() + 23);
 			}
-			if (sonar.getDistance() > 30) {
+			if (sonar.getDistance() > 30 && !evite) {
 				pilote.travel(24);// avance pour pouvoir s'aligner
 				pilote.arc(10, -90, true); // se positionne sur la ligne
 				while (!suppressed && pilote.isMoving()) {
@@ -98,7 +99,7 @@ public class Part2 implements Behavior {
 				}
 				pilote.stop();
 			} else {
-				pilote.travel(10);
+				pilote.travel(5);
 				pilote.arc(-10, -90);
 				while (!suppressed && pilote.isMoving()) {
 					Thread.yield();

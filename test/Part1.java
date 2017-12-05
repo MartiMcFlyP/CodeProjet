@@ -24,19 +24,7 @@ public class Part1 implements Behavior {
 	}
 
 	public void action() {
-		pilote.setTravelSpeed(10);
-		pilote.setRotateSpeed(45);
-		pilote.travel(2);
-		pilote.rotate(90);
-		MartinController.departY = sonarAr.getDistance();
-
-		while (sonarAv.getDistance() < 43 - sonarAr.getDistance()) { // premiere maneuvre d'evitement (obstacle avant le
-																		// bouton)
-			pilote.rotate(-90);
-			pilote.travel(20);
-			pilote.rotate(90);
-		}
-		suppressed = false; // remise a zero
+		sortirDeLaZoneDeDepart();
 		// en attendant
 
 		// pilote.arc(10.0, 90.0, true);
@@ -48,6 +36,21 @@ public class Part1 implements Behavior {
 		// Thread.yield(); // ... liberer le processeur
 		// } // sortie de boucle: {suppress} a ete appele ou le virage est termine
 		// pilote.stop(); // arreter le robot
+		alignerAvecBoutton();
+		while (!suppressed && pilote.isMoving()) { // tant que {suppress} n'a pas ete appele
+			// et que le virage n'est pas termine...
+			Thread.yield(); // ... liberer le processeur
+		} // sortie de boucle: {suppress} a ete appele ou le virage est termine
+		pilote.stop(); // arreter le robot
+		pilote.backward(); // marche arriere
+		while (!suppressed && !button.isPressed()) {
+			Thread.yield();// libere le processeur
+		}
+		pilote.stop(); // arrete le robot
+		MartinController.Part1IsDone = true;
+	}
+
+	private void alignerAvecBoutton() {
 		if (sonarAr.getDistance() <= 42) {
 			pilote.forward(); // marche arriere
 			while (!suppressed && sonarAr.getDistance() < 42) {
@@ -62,17 +65,22 @@ public class Part1 implements Behavior {
 		pilote.stop();
 
 		pilote.arc(0.0, -90.0, true); // s'aligne face au bouton
-		while (!suppressed && pilote.isMoving()) { // tant que {suppress} n'a pas ete appele
-			// et que le virage n'est pas termine...
-			Thread.yield(); // ... liberer le processeur
-		} // sortie de boucle: {suppress} a ete appele ou le virage est termine
-		pilote.stop(); // arreter le robot
-		pilote.backward(); // marche arriere
-		while (!suppressed && !button.isPressed()) {
-			Thread.yield();// libere le processeur
+	}
+
+	private void sortirDeLaZoneDeDepart() {
+		pilote.setTravelSpeed(10);
+		pilote.setRotateSpeed(45);
+		pilote.travel(2);
+		pilote.rotate(90);
+		MartinController.departY = sonarAr.getDistance();
+
+		while (sonarAv.getDistance() < 43 - sonarAr.getDistance()) { // premiere maneuvre d'evitement (obstacle avant le
+																		// bouton)
+			pilote.rotate(-90);
+			pilote.travel(20);
+			pilote.rotate(90);
 		}
-		pilote.stop(); // arrete le robot
-		MartinController.Part1IsDone = true;
+		suppressed = false; // remise a zero
 	}
 
 	/**
