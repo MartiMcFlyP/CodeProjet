@@ -42,7 +42,7 @@ public class StopBehavior implements Behavior {
 	 * @post retourne {true} si le bouton ESCAPE est enfonce.
 	 */
 	public boolean takeControl() {
-		return Button.ESCAPE.isDown() || MartinController.RetourIsDone == true;
+		return Button.ESCAPE.isDown() || Controller1171.RetourIsDone == true;
 	}
 
 }
